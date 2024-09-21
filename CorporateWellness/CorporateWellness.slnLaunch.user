@@ -1,0 +1,53 @@
+[
+  {
+    "Name": "Microsoft Teams (browser)",
+    "Projects": [
+      {
+        "Path": "TeamsApp\\TeamsApp.ttkproj",
+        "Name": "TeamsApp\\TeamsApp.ttkproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": "Microsoft Teams (browser)"
+      },
+      {
+        "Path": "CorporateWellness\\CorporateWellness.csproj",
+        "Name": "CorporateWellness\\CorporateWellness.csproj",
+        "Action": "Start",
+        "DebugTarget": "Start Project"
+      }
+    ]
+  },
+  {
+    "Name": "Microsoft 365 app (browser)",
+    "Projects": [
+      {
+        "Path": "TeamsApp\\TeamsApp.ttkproj",
+        "Name": "TeamsApp\\TeamsApp.ttkproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": "Microsoft 365 app (browser)"
+      },
+      {
+        "Path": "CorporateWellness\\CorporateWellness.csproj",
+        "Name": "CorporateWellness\\CorporateWellness.csproj",
+        "Action": "Start",
+        "DebugTarget": "Start Project"
+      }
+    ]
+  },
+  {
+    "Name": "Outlook (browser)",
+    "Projects": [
+      {
+        "Path": "TeamsApp\\TeamsApp.ttkproj",
+        "Name": "TeamsApp\\TeamsApp.ttkproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": "Outlook (browser)"
+      },
+      {
+        "Path": "CorporateWellness\\CorporateWellness.csproj",
+        "Name": "CorporateWellness\\CorporateWellness.csproj",
+        "Action": "Start",
+        "DebugTarget": "Start Project"
+      }
+    ]
+  }
+]
