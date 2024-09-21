@@ -134,4 +134,4 @@ deploy:
       # or add it to your environment variable file.
       resourceId: ${{TAB_AZURE_APP_SERVICE_RESOURCE_ID}}
       workingDirectory: ../CorporateWellness
-projectId: 0b848516-0f80-4473-8730-2d55fa6e4f24
+projectId: 4a268f88-ca03-453f-89dd-6c548bbcbbd0

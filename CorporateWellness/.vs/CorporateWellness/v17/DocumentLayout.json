@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{27A46D13-1177-4421-8D4F-7C72511AB697}|TeamsApp\\TeamsApp.ttkproj|c:\\users\\crisag\\onedrive - microsoft\\_work\\csu\\hackathon\\corporate wellness tracker\\github\\corporatewellnesstracker\\corporatewellness\\teamsapp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{27A46D13-1177-4421-8D4F-7C72511AB697}|TeamsApp\\TeamsApp.ttkproj|solutionrelative:teamsapp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{550BCD9D-BBF4-4E9F-B989-15D405BDEBC5}|CorporateWellness\\CorporateWellness.csproj|c:\\users\\crisag\\onedrive - microsoft\\_work\\csu\\hackathon\\corporate wellness tracker\\github\\corporatewellnesstracker\\corporatewellness\\corporatewellness\\components\\pages\\tab.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{550BCD9D-BBF4-4E9F-B989-15D405BDEBC5}|CorporateWellness\\CorporateWellness.csproj|solutionrelative:corporatewellness\\components\\pages\\tab.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{550BCD9D-BBF4-4E9F-B989-15D405BDEBC5}|CorporateWellness\\CorporateWellness.csproj|c:\\users\\crisag\\onedrive - microsoft\\_work\\csu\\hackathon\\corporate wellness tracker\\github\\corporatewellnesstracker\\corporatewellness\\corporatewellness\\components\\pages\\welcome.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{550BCD9D-BBF4-4E9F-B989-15D405BDEBC5}|CorporateWellness\\CorporateWellness.csproj|solutionrelative:corporatewellness\\components\\pages\\welcome.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{550BCD9D-BBF4-4E9F-B989-15D405BDEBC5}|CorporateWellness\\CorporateWellness.csproj|c:\\users\\crisag\\onedrive - microsoft\\_work\\csu\\hackathon\\corporate wellness tracker\\github\\corporatewellnesstracker\\corporatewellness\\corporatewellness\\components\\pages\\tab2.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{550BCD9D-BBF4-4E9F-B989-15D405BDEBC5}|CorporateWellness\\CorporateWellness.csproj|solutionrelative:corporatewellness\\components\\pages\\tab2.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{437B030A-E64D-4200-A273-D794A6867A1B}|TeamsApp\\TeamsApp.ttkproj|c:\\users\\crisag\\onedrive - microsoft\\_work\\csu\\hackathon\\corporate wellness tracker\\github\\corporatewellnesstracker\\corporatewellness\\teamsapp\\apppackage\\manifest.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{437B030A-E64D-4200-A273-D794A6867A1B}|TeamsApp\\TeamsApp.ttkproj|solutionrelative:teamsapp\\apppackage\\manifest.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{437B030A-E64D-4200-A273-D794A6867A1B}|TeamsApp\\TeamsApp.ttkproj|c:\\users\\crisag\\onedrive - microsoft\\_work\\csu\\hackathon\\corporate wellness tracker\\github\\corporatewellnesstracker\\corporatewellness\\teamsapp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{437B030A-E64D-4200-A273-D794A6867A1B}|TeamsApp\\TeamsApp.ttkproj|solutionrelative:teamsapp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,25 +30,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Welcome.razor",
+              "DocumentMoniker": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\CorporateWellness\\Components\\Pages\\Welcome.razor",
+              "RelativeDocumentMoniker": "CorporateWellness\\Components\\Pages\\Welcome.razor",
+              "ToolTip": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\CorporateWellness\\Components\\Pages\\Welcome.razor",
+              "RelativeToolTip": "CorporateWellness\\Components\\Pages\\Welcome.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-21T18:57:07.789Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Tab.razor",
+              "DocumentMoniker": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\CorporateWellness\\Components\\Pages\\Tab.razor",
+              "RelativeDocumentMoniker": "CorporateWellness\\Components\\Pages\\Tab.razor",
+              "ToolTip": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\CorporateWellness\\Components\\Pages\\Tab.razor",
+              "RelativeToolTip": "CorporateWellness\\Components\\Pages\\Tab.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-21T18:37:47.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Tab2.razor",
+              "DocumentMoniker": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\CorporateWellness\\Components\\Pages\\Tab2.razor",
+              "RelativeDocumentMoniker": "CorporateWellness\\Components\\Pages\\Tab2.razor",
+              "ToolTip": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\CorporateWellness\\Components\\Pages\\Tab2.razor",
+              "RelativeToolTip": "CorporateWellness\\Components\\Pages\\Tab2.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-21T18:37:42.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\TeamsApp\\README.md",
               "RelativeDocumentMoniker": "TeamsApp\\README.md",
               "ToolTip": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\TeamsApp\\README.md",
               "RelativeToolTip": "TeamsApp\\README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2024-09-21T17:47:54.868Z",
-              "IsPinned": true,
+              "WhenOpened": "2024-09-21T18:36:51.672Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "manifest.json",
+              "DocumentMoniker": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\TeamsApp\\appPackage\\manifest.json",
+              "RelativeDocumentMoniker": "TeamsApp\\appPackage\\manifest.json",
+              "ToolTip": "C:\\Users\\crisag\\OneDrive - Microsoft\\_Work\\CSU\\Hackathon\\Corporate Wellness Tracker\\GitHub\\CorporateWellnessTracker\\CorporateWellness\\TeamsApp\\appPackage\\manifest.json",
+              "RelativeToolTip": "TeamsApp\\appPackage\\manifest.json",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAUwB4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-21T18:36:49.256Z",
+              "EditorCaption": ""
             }
           ]
         }

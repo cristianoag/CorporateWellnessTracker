@@ -2,7 +2,7 @@
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
     "manifestVersion": "1.17",
     "version": "1.0.0",
-    "id": "96f82b23-583b-443c-8adf-d9d0c99603df",
+    "id": "e7ea0205-4cea-41ee-86f9-edd1da758a75",
     "developer": {
         "name": "Teams App, Inc.",
         "websiteUrl": "https://www.example.com",
@@ -14,7 +14,7 @@
         "outline": "outline.png"
     },
     "name": {
-        "short": "CorporateWellnesslocal",
+        "short": "Corporate Wellness",
         "full": "Full name for CorporateWellness"
     },
     "description": {
@@ -28,13 +28,20 @@
     "staticTabs": [
         {
             "entityId": "index",
-            "name": "Home",
+            "name": "Goals",
             "contentUrl": "https://localhost:44302/tab",
             "websiteUrl": "https://localhost:44302/tab",
             "scopes": [
-                "personal",
-                "groupChat",
-                "team"
+                "personal"
+            ]
+        },
+        {
+            "entityId": "index2",
+            "name": "Home2",
+            "contentUrl": "https://localhost:44302/tab2",
+            "websiteUrl": "https://localhost:44302/tab2",
+            "scopes": [
+                "personal"
             ]
         }
     ],
@@ -46,7 +53,7 @@
         "localhost"
     ],
     "webApplicationInfo": {
-        "id": "c1dee2cd-665d-46b5-ae05-d09619e7ef8b",
-        "resource": "api://localhost:44302/c1dee2cd-665d-46b5-ae05-d09619e7ef8b"
+        "id": "2c5061d1-d278-4f26-8297-41f04c225433",
+        "resource": "api://localhost:44302/2c5061d1-d278-4f26-8297-41f04c225433"
     }
 }

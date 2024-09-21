@@ -2,6 +2,271 @@
 @page "/tab"
 @using CorporateWellness.Components;
 
-<div>
-    <Welcome />
-</div>
+<h3 class="mb-4">Personalized Wellness Goals</h3>
+
+<EditForm Model="@wellnessGoals">
+    <div class="mb-3 row">
+        <label for="employeeName" class="col-sm-2 col-form-label">Employee Name:</label>
+        <div class="col-sm-10">
+            <InputText id="employeeName" @bind-Value="wellnessGoals.EmployeeName" class="form-control" placeholder="Enter your name" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="workStartTime" class="col-sm-2 col-form-label">Work Start Time:</label>
+        <div class="col-sm-10">
+            <InputText id="workStartTime" @bind-Value="workStartTimeInput" type="time" class="form-control" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="workEndTime" class="col-sm-2 col-form-label">Work End Time:</label>
+        <div class="col-sm-10">
+            <InputText id="workEndTime" @bind-Value="workEndTimeInput" type="time" class="form-control" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="breakInterval" class="col-sm-2 col-form-label">Preferred Break Interval (minutes):</label>
+        <div class="col-sm-10">
+            <InputNumber id="breakInterval" @bind-Value="wellnessGoals.BreakIntervalMinutes" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 offset-sm-2">
+            <button @onclick="SaveWellnessGoals" class="btn btn-primary me-2">Save</button>
+            <button @onclick="ProcessBreakSuggestions" class="btn btn-success">Process</button>
+        </div>
+    </div>
+</EditForm>
+
+@if (breakSuggestions != null && breakSuggestions.Any())
+
+{
+    <h4 class="mt-5">Suggested Breaks</h4>
+    <div class="calendar-container">
+        <div class="timeline">
+            @for (int hour = (int)wellnessGoals.WorkStartTime.TotalHours; hour <= (int)wellnessGoals.WorkEndTime.TotalHours; hour++)
+
+            {
+                <div class="time-slot">@($"{hour:00}:00")</div>
+            }
+        </div>
+        <div class="events">
+            @foreach (var breakSuggestion in breakSuggestions)
+
+            {
+
+                var workDayMinutes = (wellnessGoals.WorkEndTime - wellnessGoals.WorkStartTime).TotalMinutes;
+
+                var breakStartOffset = (breakSuggestion.StartTime - wellnessGoals.WorkStartTime).TotalMinutes;
+
+                var breakDuration = (breakSuggestion.EndTime - breakSuggestion.StartTime).TotalMinutes;
+
+
+
+                var topPercentage = (breakStartOffset / workDayMinutes) * 100;
+
+                var heightPercentage = (breakDuration / workDayMinutes) * 100;
+
+                <div class="event" style="top:@($"{topPercentage}%"); height:@($"{heightPercentage}%");">
+                    <span>Break</span><br />
+                    <small>@breakSuggestion.StartTime.ToString(@"hh\:mm") - @breakSuggestion.EndTime.ToString(@"hh\:mm")</small>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<style>
+    .calendar-container {
+        position: relative;
+        width: 300px;
+        height: 600px;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+    .timeline {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 60px;
+        height: 100%;
+        border-right: 1px solid #ccc;
+        background-color: #f8f9fa;
+    }
+
+    .time-slot {
+        position: relative;
+        height: calc(100% / 12); /* Adjust based on total work hours */
+        border-bottom: 1px solid #eee;
+        font-size: 12px;
+        text-align: center;
+        line-height: calc(100% / 12);
+    }
+
+    .events {
+        position: absolute;
+        left: 60px;
+        top: 0;
+        width: 240px;
+        height: 100%;
+    }
+
+    .event {
+        position: absolute;
+        left: 10px;
+        width: calc(100% - 20px);
+        background-color: #28a745;
+        color: #fff;
+        padding: 5px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+</style>
+
+@code {
+    private WellnessGoals wellnessGoals = new WellnessGoals();
+
+    private List<BreakSuggestion> breakSuggestions;
+
+
+
+    // Variables to hold the time input strings
+
+    private string workStartTimeInput;
+
+    private string workEndTimeInput;
+
+
+
+    private void SaveWellnessGoals()
+
+    {
+
+        // Placeholder for save logic
+
+    }
+
+
+
+    private void ProcessBreakSuggestions()
+
+    {
+
+        // Parse the time inputs
+
+        if (!TimeSpan.TryParse(workStartTimeInput, out var startTime) ||
+
+            !TimeSpan.TryParse(workEndTimeInput, out var endTime))
+
+        {
+
+            // Handle invalid time input
+
+            return;
+
+        }
+
+
+
+        wellnessGoals.WorkStartTime = startTime;
+
+        wellnessGoals.WorkEndTime = endTime;
+
+
+
+        breakSuggestions = new List<BreakSuggestion>();
+
+
+
+        var interval = TimeSpan.FromMinutes(wellnessGoals.BreakIntervalMinutes);
+
+
+
+        if (startTime >= endTime || interval <= TimeSpan.Zero)
+
+        {
+
+            // Handle invalid input
+
+            return;
+
+        }
+
+
+
+        var currentTime = startTime + interval;
+
+        int breaksAdded = 0;
+
+
+
+        while (currentTime < endTime && breaksAdded < 3)
+
+        {
+
+            var breakStart = currentTime;
+
+            var breakEnd = currentTime + TimeSpan.FromMinutes(15); // Assuming 15-minute breaks
+
+
+
+            if (breakEnd > endTime)
+
+                breakEnd = endTime;
+
+
+
+            breakSuggestions.Add(new BreakSuggestion
+
+                {
+
+                    StartTime = breakStart,
+
+                    EndTime = breakEnd
+
+                });
+
+
+
+            breaksAdded++;
+
+            currentTime = breakEnd + interval;
+
+        }
+
+    }
+
+
+
+    public class WellnessGoals
+
+    {
+
+        public string EmployeeName { get; set; }
+
+        public TimeSpan WorkStartTime { get; set; }
+
+        public TimeSpan WorkEndTime { get; set; }
+
+        public int BreakIntervalMinutes { get; set; }
+
+    }
+
+
+
+    public class BreakSuggestion
+
+    {
+
+        public TimeSpan StartTime { get; set; }
+
+        public TimeSpan EndTime { get; set; }
+
+    }
+}
+
+
+
+

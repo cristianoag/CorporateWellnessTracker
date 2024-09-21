@@ -14,7 +14,7 @@
         "outline": "outline.png"
     },
     "name": {
-        "short": "CorporateWellness${{APP_NAME_SUFFIX}}",
+        "short": "Corporate Wellness",
         "full": "Full name for CorporateWellness"
     },
     "description": {
@@ -26,17 +26,24 @@
     "composeExtensions": [],
     "configurableTabs": [],
     "staticTabs": [
-        {
-            "entityId": "index",
-            "name": "Home",
-            "contentUrl": "${{TAB_ENDPOINT}}/tab",
-            "websiteUrl": "${{TAB_ENDPOINT}}/tab",
-            "scopes": [
-                "personal",
-                "groupChat",
-                "team"
-            ]
-        }
+      {
+        "entityId": "index",
+        "name": "Goals",
+        "contentUrl": "${{TAB_ENDPOINT}}/tab",
+        "websiteUrl": "${{TAB_ENDPOINT}}/tab",
+        "scopes": [
+          "personal"
+        ]
+      },
+      {
+        "entityId": "index2",
+        "name": "Home2",
+        "contentUrl": "${{TAB_ENDPOINT}}/tab2",
+        "websiteUrl": "${{TAB_ENDPOINT}}/tab2",
+        "scopes": [
+          "personal"
+        ]
+      }
     ],
     "permissions": [
         "identity",
