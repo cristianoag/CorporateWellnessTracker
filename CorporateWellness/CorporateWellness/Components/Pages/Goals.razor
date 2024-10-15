@@ -1,0 +1,41 @@
+﻿@page "/"
+@page "/goals"
+@using CorporateWellness.Components;
+@using Microsoft.AspNetCore.Components.QuickGrid;
+
+<h3>Goals</h3>
+
+<QuickGrid Items="@userGoals">
+    <Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn>
+        <input type="checkbox" @onchange="@(() => OnCheckboxChanged(context))" />
+    </Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn>
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Id)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Name)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Frequency)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Measurement)" Sortable="false" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Support)" Sortable="false" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Status)" Sortable="true" />
+</QuickGrid>
+
+<p><strong>@message</strong></p>
+
+@code {
+
+    string message = string.Empty;
+
+    record userGoal(int Id, string Name, string Frequency, string Measurement, string Support, string Status);
+
+    IQueryable<userGoal> userGoals = new[]
+
+    {
+        new userGoal(1, "Increase daily physical activity", "Daily","10,000 steps","Access to standing desks and reminders","Ongoing"),
+        new userGoal(2, "Improve sleep quality", "Daily","7 hours of sleep","Sleep hygiene tips, reduce screen time","Ongoing"),
+        new userGoal(3, "Improve work and life balance", "Weekly","8AM-5PM work hours","Time management tools, productivity tips","Completed"),
+        new userGoal(4, "Healthy eating habits", "Daily","3 fruit servings","Meal planning resources, healthy recipe","Not Started")
+    }.AsQueryable();
+
+    void OnCheckboxChanged(userGoal curr) {
+        message = $"Checkbox for Goal Id {curr.Id} changed";
+    }
+
+}

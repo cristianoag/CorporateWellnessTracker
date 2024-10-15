@@ -1,0 +1,26 @@
+﻿@page "/activities"
+@using CorporateWellness.Components;
+@using Microsoft.AspNetCore.Components.QuickGrid;
+
+<h3>Activities</h3>
+
+<QuickGrid Items="@userActivities">
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Id)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Name)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Calories)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.SuggestedSlot)" Sortable="false" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Features)" Sortable="false" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Source)" Sortable="false" />
+</QuickGrid>
+
+@code {
+    record userActivity(int Id, string Name, string SuggestedSlot, int Calories, string Features, string Source);
+
+    IQueryable<userActivity> userActivities = new[]
+    {
+        new userActivity(10895, "Desk stretching routine", "Every two hours",50,"Reduces muscle stiffness","AI Suggested"),
+        new userActivity(10944, "Walking break", "Lunch break (12PM-1PM)",150,"Boots cardiovascular health","Manual"),
+        new userActivity(11203, "Office chair yoga", "Mid-morning (10AM)",70,"Increases flexibility","AI Suggested"),
+        new userActivity(11205, "Stait climbing", "Afternoon (3PM)",200,"Improves leg strength and cardio","Manual")
+    }.AsQueryable();
+}

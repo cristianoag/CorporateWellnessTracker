@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "id": "${{TEAMS_APP_ID}}",
     "developer": {
-        "name": "Teams App, Inc.",
+        "name": "Microsoft Hackathon 2024",
         "websiteUrl": "https://www.example.com",
         "privacyUrl": "https://www.example.com/privacy",
         "termsOfUseUrl": "https://www.example.com/termsofuse"
@@ -15,36 +15,63 @@
     },
     "name": {
         "short": "Corporate Wellness",
-        "full": "Full name for CorporateWellness"
+        "full": "Corporate Wellness Tracker 1.0"
     },
-    "description": {
-        "short": "Short description of CorporateWellness",
-        "full": "Full description of CorporateWellness"
-    },
+  "description": {
+    "short": "Personalized Plans and Breaks to Boost Productivity and Make Wellness Fun!",
+    "full": "Wellness Tracker is an AI-powered app that monitors work habits, offering personalized wellness plans and break recommendations to boost productivity and promote a healthier work-life balance."
+  },
     "accentColor": "#FFFFFF",
     "bots": [],
     "composeExtensions": [],
     "configurableTabs": [],
-    "staticTabs": [
-      {
-        "entityId": "index",
-        "name": "Goals",
-        "contentUrl": "${{TAB_ENDPOINT}}/tab",
-        "websiteUrl": "${{TAB_ENDPOINT}}/tab",
-        "scopes": [
-          "personal"
-        ]
-      },
-      {
-        "entityId": "index2",
-        "name": "Home2",
-        "contentUrl": "${{TAB_ENDPOINT}}/tab2",
-        "websiteUrl": "${{TAB_ENDPOINT}}/tab2",
-        "scopes": [
-          "personal"
-        ]
-      }
-    ],
+  "staticTabs": [
+    {
+      "entityId": "index1",
+      "name": "Goals",
+      "contentUrl": "${{TAB_ENDPOINT}}/goals",
+      "websiteUrl": "${{TAB_ENDPOINT}}/goals",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "index2",
+      "name": "Breaks",
+      "contentUrl": "${{TAB_ENDPOINT}}/breaks",
+      "websiteUrl": "${{TAB_ENDPOINT}}/breaks",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "index3",
+      "name": "Meals",
+      "contentUrl": "${{TAB_ENDPOINT}}/meals",
+      "websiteUrl": "${{TAB_ENDPOINT}}/meals",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "index4",
+      "name": "Activities",
+      "contentUrl": "${{TAB_ENDPOINT}}/activities",
+      "websiteUrl": "${{TAB_ENDPOINT}}/activities",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "index5",
+      "name": "Games",
+      "contentUrl": "${{TAB_ENDPOINT}}/games",
+      "websiteUrl": "${{TAB_ENDPOINT}}/games",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ],
     "permissions": [
         "identity",
         "messageTeamMembers"

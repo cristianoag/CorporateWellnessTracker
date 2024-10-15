@@ -1,0 +1,26 @@
+﻿@page "/meals"
+@using CorporateWellness.Components;
+@using Microsoft.AspNetCore.Components.QuickGrid;
+
+<h3>Meals</h3>
+
+<QuickGrid Items="@userMeals">
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Id)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Name)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Consumption)" Sortable="true" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Calories)" Sortable="false" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Features)" Sortable="false" />
+    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Source)" Sortable="false" />
+</QuickGrid>
+
+@code {
+    record userMeal(int Id, string Name, string Consumption, int Calories, string Features, string Source);
+
+    IQueryable<userMeal> userMeals = new[]
+    {
+        new userMeal(1, "Overnight oats with berries", "Breakfast (7AM-9AM)",300,"High in fiber, rich in antioxidants","AI Suggested"),
+        new userMeal(2, "Grilled chicken salad", "Lunch (12PM-2PM)",450,"High protein, low fat","Manual"),
+        new userMeal(3, "Hummus with veggie sticks", "Snack (3PM-4PM)",200,"Low calorie, nutrient-dense","AI Suggested"),
+        new userMeal(4, "Quinoa bowl with avocado", "Dinner (5PM-7PM)",500,"Rich in healthy fats, high in protein","AI Suggested")
+    }.AsQueryable();
+}

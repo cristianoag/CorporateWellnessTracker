@@ -2,9 +2,9 @@
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
     "manifestVersion": "1.17",
     "version": "1.0.0",
-    "id": "e7ea0205-4cea-41ee-86f9-edd1da758a75",
+    "id": "a79acd02-c344-4cc4-9e3a-7c2b974b4ff6",
     "developer": {
-        "name": "Teams App, Inc.",
+        "name": "Microsoft Hackathon 2024",
         "websiteUrl": "https://www.example.com",
         "privacyUrl": "https://www.example.com/privacy",
         "termsOfUseUrl": "https://www.example.com/termsofuse"
@@ -15,11 +15,11 @@
     },
     "name": {
         "short": "Corporate Wellness",
-        "full": "Full name for CorporateWellness"
+        "full": "Corporate Wellness Tracker 1.0"
     },
     "description": {
-        "short": "Short description of CorporateWellness",
-        "full": "Full description of CorporateWellness"
+        "short": "Personalized Plans and Breaks to Boost Productivity and Make Wellness Fun!",
+        "full": "Wellness Tracker is an AI-powered app that monitors work habits, offering personalized wellness plans and break recommendations to boost productivity and promote a healthier work-life balance."
     },
     "accentColor": "#FFFFFF",
     "bots": [],
@@ -27,19 +27,46 @@
     "configurableTabs": [],
     "staticTabs": [
         {
-            "entityId": "index",
+            "entityId": "index1",
             "name": "Goals",
-            "contentUrl": "https://localhost:44302/tab",
-            "websiteUrl": "https://localhost:44302/tab",
+            "contentUrl": "https://localhost:44302/goals",
+            "websiteUrl": "https://localhost:44302/goals",
             "scopes": [
                 "personal"
             ]
         },
         {
             "entityId": "index2",
-            "name": "Home2",
-            "contentUrl": "https://localhost:44302/tab2",
-            "websiteUrl": "https://localhost:44302/tab2",
+            "name": "Breaks",
+            "contentUrl": "https://localhost:44302/breaks",
+            "websiteUrl": "https://localhost:44302/breaks",
+            "scopes": [
+                "personal"
+            ]
+        },
+        {
+            "entityId": "index3",
+            "name": "Meals",
+            "contentUrl": "https://localhost:44302/meals",
+            "websiteUrl": "https://localhost:44302/meals",
+            "scopes": [
+                "personal"
+            ]
+        },
+        {
+            "entityId": "index4",
+            "name": "Activities",
+            "contentUrl": "https://localhost:44302/activities",
+            "websiteUrl": "https://localhost:44302/activities",
+            "scopes": [
+                "personal"
+            ]
+        },
+        {
+            "entityId": "index5",
+            "name": "Games",
+            "contentUrl": "https://localhost:44302/games",
+            "websiteUrl": "https://localhost:44302/games",
             "scopes": [
                 "personal"
             ]
@@ -53,7 +80,7 @@
         "localhost"
     ],
     "webApplicationInfo": {
-        "id": "2c5061d1-d278-4f26-8297-41f04c225433",
-        "resource": "api://localhost:44302/2c5061d1-d278-4f26-8297-41f04c225433"
+        "id": "7dde6aea-a274-493c-ba3f-7c98f91df203",
+        "resource": "api://localhost:44302/7dde6aea-a274-493c-ba3f-7c98f91df203"
     }
 }

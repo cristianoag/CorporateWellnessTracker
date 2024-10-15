@@ -1,6 +1,6 @@
 {
-    "id": "e4600d77-bed6-467b-8e8c-4797f517f089",
-    "appId": "2c5061d1-d278-4f26-8297-41f04c225433",
+    "id": "cdec2656-a77d-4084-a43c-97de5cbc7a64",
+    "appId": "7dde6aea-a274-493c-ba3f-7c98f91df203",
     "name": "sso-tab-aad",
     "accessTokenAcceptedVersion": 2,
     "signInAudience": "AzureADMyOrg",
@@ -31,7 +31,7 @@
         {
             "adminConsentDescription": "Allows Teams to call the app's web APIs as the current user.",
             "adminConsentDisplayName": "Teams can access app's web APIs",
-            "id": "006670fa-bd81-4364-9f5a-ab3269c49aa2",
+            "id": "ce972071-2f5b-4351-82f3-b8e0ee99516c",
             "isEnabled": true,
             "type": "User",
             "userConsentDescription": "Enable Teams to call this app's web APIs with the same rights that you have",
@@ -43,60 +43,60 @@
         {
             "appId": "1fec8e78-bce4-4aaf-ab1b-5451cc387264",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "5e3ce6c0-2b1f-4285-8d4b-75ee78787346",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "d3590ed6-52b3-4102-aeff-aad2292ab01c",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "00000002-0000-0ff1-ce00-000000000000",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "bc59ab01-8403-45c6-8796-ac3ef710b3e3",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "0ec893e0-5785-4de6-99da-4ed124e5296c",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "4765445b-32c6-49b0-83e6-1d93765276ca",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "4345a7b9-9a63-4910-a426-35363201d503",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         },
         {
             "appId": "27922004-5251-4030-b22d-91ecd9a37ea4",
             "permissionIds": [
-                "006670fa-bd81-4364-9f5a-ab3269c49aa2"
+                "ce972071-2f5b-4351-82f3-b8e0ee99516c"
             ]
         }
     ],
     "identifierUris": [
-        "api://localhost:44302/2c5061d1-d278-4f26-8297-41f04c225433"
+        "api://localhost:44302/7dde6aea-a274-493c-ba3f-7c98f91df203"
     ],
     "replyUrlsWithType": [
         {
@@ -104,7 +104,7 @@
             "type": "Web"
         },
         {
-            "url": "https://localhost:44302/auth-end.html?clientId=2c5061d1-d278-4f26-8297-41f04c225433",
+            "url": "https://localhost:44302/auth-end.html?clientId=7dde6aea-a274-493c-ba3f-7c98f91df203",
             "type": "Spa"
         },
         {
