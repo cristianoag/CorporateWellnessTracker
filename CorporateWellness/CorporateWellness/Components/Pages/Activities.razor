@@ -1,19 +1,33 @@
 ﻿@page "/activities"
 @using CorporateWellness.Components;
-@using Microsoft.AspNetCore.Components.QuickGrid;
+@using Microsoft.FluentUI.AspNetCore.Components
 
-<h3>Activities</h3>
-
-<QuickGrid Items="@userActivities">
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Id)" Sortable="true" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Name)" Sortable="true" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Calories)" Sortable="true" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.SuggestedSlot)" Sortable="false" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Features)" Sortable="false" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Source)" Sortable="false" />
-</QuickGrid>
+<FluentGrid Style="background-color: var(--neutral-layer-3); padding: 4px; ">
+    <FluentGridItem xs="12" Justify="JustifyContent.FlexEnd">
+        <FluentSearch AriaLabel="Search" />
+        &nbsp;
+        <FluentButton>New Activity</FluentButton>
+        &nbsp;
+        <FluentButton>AI Suggestion</FluentButton>
+    </FluentGridItem>
+    <FluentGridItem xs="12">
+        <FluentDataGrid Items="@userActivities">
+            <TemplateColumn Width="30px" Align="Align.Center">
+                <input type="checkbox" @onchange="@(() => OnCheckboxChanged(context))" />
+            </TemplateColumn>
+            <PropertyColumn Property="@(p => p.Id)" Sortable="true" />
+            <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
+            <PropertyColumn Property="@(p => p.Calories)" Sortable="true" />
+            <PropertyColumn Property="@(p => p.SuggestedSlot)" Sortable="false" />
+            <PropertyColumn Property="@(p => p.Features)" Sortable="false" />
+            <PropertyColumn Property="@(p => p.Source)" Sortable="false" />
+        </FluentDataGrid>
+    </FluentGridItem>
+</FluentGrid>
 
 @code {
+    string message = string.Empty;
+
     record userActivity(int Id, string Name, string SuggestedSlot, int Calories, string Features, string Source);
 
     IQueryable<userActivity> userActivities = new[]
@@ -23,4 +37,9 @@
         new userActivity(11203, "Office chair yoga", "Mid-morning (10AM)",70,"Increases flexibility","AI Suggested"),
         new userActivity(11205, "Stait climbing", "Afternoon (3PM)",200,"Improves leg strength and cardio","Manual")
     }.AsQueryable();
+
+    void OnCheckboxChanged(userActivity curr)
+    {
+        message = $"Checkbox for Activity Id {curr.Id} changed";
+    }
 }

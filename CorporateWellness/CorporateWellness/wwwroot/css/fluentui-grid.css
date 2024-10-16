@@ -1,0 +1,55 @@
+﻿/* Basic Fluent UI grid structure */
+.quickgrid {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #323130;
+}
+
+    /* Grid header styling */
+    .quickgrid th {
+        background-color: #f3f2f1;
+        color: #323130;
+        font-weight: 600;
+        text-align: left;
+        border-bottom: 2px solid #edebe9;
+    }
+
+    /* Grid rows styling */
+    .quickgrid td {
+        padding: 12px;
+        border-bottom: 1px solid #edebe9;
+        font-size: 14px;
+    }
+
+    /* Hover effect for rows */
+    .quickgrid tbody tr:hover {
+        background-color: #edebe9;
+        cursor: pointer;
+    }
+
+    /* Checkbox style */
+    .quickgrid input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #edebe9;
+        border-radius: 4px;
+    }
+
+    /* Completed status row styling */
+    .quickgrid td.completed {
+        color: #107c10;
+        font-weight: bold;
+    }
+
+    /* Ongoing status row styling */
+    .quickgrid td.ongoing {
+        color: #0078d4;
+        font-weight: bold;
+    }
+
+    /* Not Started status row styling */
+    .quickgrid td.not-started {
+        color: #d83b01;
+        font-weight: bold;
+    }

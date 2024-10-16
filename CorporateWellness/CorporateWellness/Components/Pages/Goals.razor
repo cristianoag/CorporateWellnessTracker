@@ -1,21 +1,48 @@
 ﻿@page "/"
 @page "/goals"
 @using CorporateWellness.Components;
-@using Microsoft.AspNetCore.Components.QuickGrid;
+@using Microsoft.FluentUI.AspNetCore.Components
+@inject IDialogService _dialogService
+<FluentDialogProvider @rendermode="RenderMode.InteractiveServer" />
 
-<h3>Goals</h3>
 
-<QuickGrid Items="@userGoals">
-    <Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn>
-        <input type="checkbox" @onchange="@(() => OnCheckboxChanged(context))" />
-    </Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn>
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Id)" Sortable="true" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Name)" Sortable="true" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Frequency)" Sortable="true" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Measurement)" Sortable="false" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Support)" Sortable="false" />
-    <Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn Property="@(p => p.Status)" Sortable="true" />
-</QuickGrid>
+<FluentGrid Style="background-color: var(--neutral-layer-3); padding: 4px; ">
+    <FluentGridItem xs="12" Justify="JustifyContent.FlexEnd">
+        <FluentSearch AriaLabel="Search" />
+        &nbsp;
+        <FluentButton OnClick="@OpenDialogAsync">New Goal</FluentButton>
+        &nbsp;
+        <FluentButton IconEnd="@(new Icons.Regular.Size16.Delete())">Delete</FluentButton>
+    </FluentGridItem>
+    <FluentGridItem xs="12">
+        <FluentDataGrid Items="@userGoals">
+            <TemplateColumn Width="30px" Align="Align.Center">
+                <input type="checkbox" @onchange="@(() => OnCheckboxChanged(context))" />
+            </TemplateColumn>
+            @* <PropertyColumn Property="@(p => p.Id)" Sortable="true" /> *@
+            <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
+            <PropertyColumn Property="@(p => p.Frequency)" Sortable="true" />
+            <PropertyColumn Property="@(p => p.Measurement)" Sortable="false" />
+            <PropertyColumn Property="@(p => p.Support)" Sortable="false" />
+            <TemplateColumn Title="Status" Align="Align.Center">
+                @if (context.Status == "Ongoing")
+                {
+                    <span class="ms-Icon ms-Icon--Accept"></span>
+                }
+                else if (context.Status == "Completed")
+                {
+                    <span class="ms-Icon ms-Icon--SkypeCircleCheck"></span>
+                }
+                else if (context.Status == "Not Started")
+                {
+                    <span class="ms-Icon ms-Icon--SkypeCircleClock"></span>
+                }
+            </TemplateColumn>
+
+        </FluentDataGrid>
+    </FluentGridItem>
+</FluentGrid>
+
 
 <p><strong>@message</strong></p>
 
@@ -26,7 +53,6 @@
     record userGoal(int Id, string Name, string Frequency, string Measurement, string Support, string Status);
 
     IQueryable<userGoal> userGoals = new[]
-
     {
         new userGoal(1, "Increase daily physical activity", "Daily","10,000 steps","Access to standing desks and reminders","Ongoing"),
         new userGoal(2, "Improve sleep quality", "Daily","7 hours of sleep","Sleep hygiene tips, reduce screen time","Ongoing"),
@@ -38,4 +64,29 @@
         message = $"Checkbox for Goal Id {curr.Id} changed";
     }
 
+    private async Task OpenDialogAsync()
+    {
+        var text = string.Empty;
+        var dialogInstance = await _dialogService.ShowDialogAsync(@<div>
+        <FluentTextField @bind-Value=text Label="Name:" />
+        <FluentTextField @bind-Value=text Label="Frequency:" />
+        <FluentTextField @bind-Value=text Label="Measurement:" />
+        <FluentTextField @bind-Value=text Label="Support:" />
+        <FluentCombobox @bind-Value=text TOption="string" Label="Status:">
+        <FluentOption Value="Ongoing">Ongoing</FluentOption>
+            <FluentOption Value="Completed">Completed</FluentOption>
+            <FluentOption Value="Not Started">Not Started</FluentOption>
+        </FluentCombobox>
+        </div>
+    , new DialogParameters
+    {
+        Title = "New Goal Form",
+    });
+
+        var result = await dialogInstance.Result;
+        if (!result.Cancelled)
+        {
+            await _dialogService.ShowSuccessAsync($"You entered: {text}", "Success");
+        }
+    }
 }

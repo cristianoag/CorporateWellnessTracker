@@ -1,6 +1,7 @@
 using CorporateWellness;
 using CorporateWellness.Components;
 using CorporateWellness.Interop.TeamsSDK;
+using Microsoft.FluentUI.AspNetCore.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,8 @@ builder.Services.AddRazorComponents()
 var config = builder.Configuration.Get<ConfigOptions>();
 builder.Services.AddTeamsFx(config.TeamsFx.Authentication);
 builder.Services.AddScoped<MicrosoftTeams>();
-
+builder.Services.AddScoped<DialogService>();
+builder.Services.AddFluentUIComponents();
 builder.Services.AddControllers();
 builder.Services.AddHttpClient("WebClient", client => client.Timeout = TimeSpan.FromSeconds(600));
 builder.Services.AddHttpContextAccessor();
