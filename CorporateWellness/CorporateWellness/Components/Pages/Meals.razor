@@ -1,18 +1,23 @@
 ﻿@page "/meals"
 @using CorporateWellness.Components;
+@using CorporateWellness.Models
 @using Microsoft.FluentUI.AspNetCore.Components
+@inject IDialogService _dialogService
+<FluentDialogProvider @rendermode="RenderMode.InteractiveServer" />
 
 
 <FluentGrid Style="background-color: var(--neutral-layer-3); padding: 4px; ">
     <FluentGridItem xs="12" Justify="JustifyContent.FlexEnd">
         <FluentSearch AriaLabel="Search" />
         &nbsp;
-        <FluentButton>New Meal</FluentButton>
+        <FluentButton OnClick="@OpenDialogAsync">New Meal</FluentButton>
         &nbsp;
         <FluentButton>AI Suggestion</FluentButton>
+        &nbsp;
+        <FluentButton IconEnd="@(new Icons.Regular.Size16.Delete())">Delete</FluentButton>
     </FluentGridItem>
     <FluentGridItem xs="12">
-        <FluentDataGrid Items="@userMeals">
+        <FluentDataGrid Items="@FilteredUserMeals">
             <TemplateColumn Width="30px" Align="Align.Center">
                 <input type="checkbox" @onchange="@(() => OnCheckboxChanged(context))" />
             </TemplateColumn>
@@ -26,22 +31,61 @@
     </FluentGridItem>
 </FluentGrid>
 
+<p><strong>@message</strong></p>
 
 @code {
     string message = string.Empty;
 
-    record userMeal(int Id, string Name, string Consumption, int Calories, string Features, string Source);
+    List<UserMeal> userMeals = new List<UserMeal>
 
-    IQueryable<userMeal> userMeals = new[]
     {
-        new userMeal(1, "Overnight oats with berries", "Breakfast (7AM-9AM)",300,"High in fiber, rich in antioxidants","AI Suggested"),
-        new userMeal(2, "Grilled chicken salad", "Lunch (12PM-2PM)",450,"High protein, low fat","Manual"),
-        new userMeal(3, "Hummus with veggie sticks", "Snack (3PM-4PM)",200,"Low calorie, nutrient-dense","AI Suggested"),
-        new userMeal(4, "Quinoa bowl with avocado", "Dinner (5PM-7PM)",500,"Rich in healthy fats, high in protein","AI Suggested")
-    }.AsQueryable();
+        new UserMeal(1, "Overnight oats with berries", "Breakfast (7AM-9AM)","300","High in fiber, rich in antioxidants","AI Suggested"),
+        new UserMeal(2, "Grilled chicken salad", "Lunch (12PM-2PM)","450","High protein, low fat","Custom"),
+        new UserMeal(3, "Hummus with veggie sticks", "Snack (3PM-4PM)","200","Low calorie, nutrient-dense","AI Suggested"),
+        new UserMeal(4, "Quinoa bowl with avocado", "Dinner (5PM-7PM)","500","Rich in healthy fats, high in protein","AI Suggested")
+    };
 
-    void OnCheckboxChanged(userMeal curr)
+    IQueryable<UserMeal> FilteredUserMeals => userMeals.AsQueryable();
+
+
+    void OnCheckboxChanged(UserMeal curr)
     {
         message = $"Checkbox for Meal Id {curr.Id} changed";
+    }
+
+    private async Task OpenDialogAsync()
+    {
+        var newMeal = new UserMeal();
+
+        var dialogInstance = await _dialogService.ShowDialogAsync(@<div>
+        <FluentTextField style="width: 100%;" @bind-Value=newMeal.Name Label="Name:" /><br>
+        <FluentCombobox @bind-Value=newMeal.Consumption TOption="string" Label="Consumption:">
+            <FluentOption Selected="true" Value="Breakfast (7AM-9AM)">Breakfast (7AM-9AM)</FluentOption>
+            <FluentOption Value="Lunch (12PM-2PM)">Lunch (12PM-2PM)</FluentOption>
+            <FluentOption Value="Snack (3PM-4PM)">Snack (3PM-4PM)</FluentOption>
+            <FluentOption Value="Dinner (5PM-7PM)">Dinner (5PM-7PM)</FluentOption>
+        </FluentCombobox>
+        <FluentTextField @bind-Value=newMeal.Calories Label="Calories:" /><br>
+        <FluentTextArea style="width: 100%;" @bind-Value=newMeal.Features Label="Features:" /><br>
+        <FluentCombobox Disabled="true" @bind-Value=newMeal.Source TOption="string" Label="Source:">
+            <FluentOption Selected="true" Value="Custom">Custom</FluentOption>
+            <FluentOption Value="AI Suggested">AI Suggested</FluentOption>
+        </FluentCombobox>
+
+    </div>
+    , new DialogParameters
+    {
+        Title = "New Meal Form",
+    });
+
+        var result = await dialogInstance.Result;
+        if (!result.Cancelled)
+        {
+            newMeal.Id = userMeals.Count + 1; // Simple ID generation
+            userMeals.Add(newMeal);
+            StateHasChanged();
+
+            await _dialogService.ShowSuccessAsync($"You add a new meal!", "Success");
+        }
     }
 }

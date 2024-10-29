@@ -1,21 +1,26 @@
 ﻿@page "/activities"
 @using CorporateWellness.Components;
+@using CorporateWellness.Models
 @using Microsoft.FluentUI.AspNetCore.Components
+@inject IDialogService _dialogService
+<FluentDialogProvider @rendermode="RenderMode.InteractiveServer" />
 
 <FluentGrid Style="background-color: var(--neutral-layer-3); padding: 4px; ">
     <FluentGridItem xs="12" Justify="JustifyContent.FlexEnd">
         <FluentSearch AriaLabel="Search" />
         &nbsp;
-        <FluentButton>New Activity</FluentButton>
+        <FluentButton OnClick="@OpenDialogAsync">New Activity</FluentButton>
         &nbsp;
         <FluentButton>AI Suggestion</FluentButton>
+        &nbsp;
+        <FluentButton IconEnd="@(new Icons.Regular.Size16.Delete())">Delete</FluentButton>
     </FluentGridItem>
     <FluentGridItem xs="12">
-        <FluentDataGrid Items="@userActivities">
+        <FluentDataGrid Items="@FilteredUserActivities">
             <TemplateColumn Width="30px" Align="Align.Center">
                 <input type="checkbox" @onchange="@(() => OnCheckboxChanged(context))" />
             </TemplateColumn>
-            <PropertyColumn Property="@(p => p.Id)" Sortable="true" />
+            @* <PropertyColumn Property="@(p => p.Id)" Sortable="true" /> *@
             <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
             <PropertyColumn Property="@(p => p.Calories)" Sortable="true" />
             <PropertyColumn Property="@(p => p.SuggestedSlot)" Sortable="false" />
@@ -25,21 +30,61 @@
     </FluentGridItem>
 </FluentGrid>
 
+<p><strong>@message</strong></p>
+
 @code {
     string message = string.Empty;
-
-    record userActivity(int Id, string Name, string SuggestedSlot, int Calories, string Features, string Source);
-
-    IQueryable<userActivity> userActivities = new[]
+    
+    List<UserActivity> userActivities = new List<UserActivity>
     {
-        new userActivity(10895, "Desk stretching routine", "Every two hours",50,"Reduces muscle stiffness","AI Suggested"),
-        new userActivity(10944, "Walking break", "Lunch break (12PM-1PM)",150,"Boots cardiovascular health","Manual"),
-        new userActivity(11203, "Office chair yoga", "Mid-morning (10AM)",70,"Increases flexibility","AI Suggested"),
-        new userActivity(11205, "Stait climbing", "Afternoon (3PM)",200,"Improves leg strength and cardio","Manual")
-    }.AsQueryable();
+        new UserActivity(10895, "Desk stretching routine", "Every two hours","50","Reduces muscle stiffness","AI Suggested"),
+        new UserActivity(10944, "Walking break", "Lunch break (12PM-1PM)","150","Boots cardiovascular health","Custom"),
+        new UserActivity(11203, "Office chair yoga", "Mid-morning (10AM)","70","Increases flexibility","AI Suggested"),
+        new UserActivity(11205, "Stair climbing", "Afternoon (3PM)","200","Improves leg strength and cardio","Custom")
+    };
 
-    void OnCheckboxChanged(userActivity curr)
+    IQueryable<UserActivity> FilteredUserActivities => userActivities.AsQueryable();
+
+    void OnCheckboxChanged(UserActivity curr)
     {
         message = $"Checkbox for Activity Id {curr.Id} changed";
     }
+
+    private async Task OpenDialogAsync()
+    {
+        var newActivity = new UserActivity();
+
+        var dialogInstance = await _dialogService.ShowDialogAsync(@<div>
+        <FluentTextField style="width: 100%;" @bind-Value=newActivity.Name Label="Name:" /><br>
+        <FluentCombobox @bind-Value=newActivity.SuggestedSlot TOption="string" Label="Suggested Slot:">
+            <FluentOption Selected="true" Value="Every two hours">Every two hours</FluentOption>
+            <FluentOption Value="Every hour">Every hour</FluentOption>
+            <FluentOption Value="Mid-morning (10AM)">Mid-morning (10AM)</FluentOption>
+            <FluentOption Value="Lunch break (12PM-1PM)">Lunch break (12PM-1PM)</FluentOption>
+            <FluentOption Value="Afternoon (3PM)">Afternoon (3PM)</FluentOption>
+        </FluentCombobox>
+        <FluentTextField @bind-Value=newActivity.Calories Label="Calories:" /><br>
+        <FluentTextArea style="width: 100%;" @bind-Value=newActivity.Features Label="Features:" /><br>
+        <FluentCombobox Disabled="true" @bind-Value=newActivity.Source TOption="string" Label="Source:">
+            <FluentOption Selected="true" Value="Custom">Custom</FluentOption>
+            <FluentOption Value="AI Suggested">AI Suggested</FluentOption>
+        </FluentCombobox>
+
+    </div>
+    , new DialogParameters
+    {
+        Title = "New Activity Form",
+    });
+
+        var result = await dialogInstance.Result;
+        if (!result.Cancelled)
+        {
+            newActivity.Id = userActivities.Count + 1; // Simple ID generation
+            userActivities.Add(newActivity);
+            StateHasChanged();
+
+            await _dialogService.ShowSuccessAsync($"You add a new activity!", "Success");
+        }
+    }
+
 }

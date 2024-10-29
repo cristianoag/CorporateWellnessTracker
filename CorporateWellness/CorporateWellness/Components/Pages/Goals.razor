@@ -1,6 +1,7 @@
 ﻿@page "/"
 @page "/goals"
 @using CorporateWellness.Components;
+@using CorporateWellness.Models;
 @using Microsoft.FluentUI.AspNetCore.Components
 @inject IDialogService _dialogService
 <FluentDialogProvider @rendermode="RenderMode.InteractiveServer" />
@@ -15,7 +16,7 @@
         <FluentButton IconEnd="@(new Icons.Regular.Size16.Delete())">Delete</FluentButton>
     </FluentGridItem>
     <FluentGridItem xs="12">
-        <FluentDataGrid Items="@userGoals">
+        <FluentDataGrid Items="@FilteredUserGoals">
             <TemplateColumn Width="30px" Align="Align.Center">
                 <input type="checkbox" @onchange="@(() => OnCheckboxChanged(context))" />
             </TemplateColumn>
@@ -50,32 +51,34 @@
 
     string message = string.Empty;
 
-    record userGoal(int Id, string Name, string Frequency, string Measurement, string Support, string Status);
+    List<UserGoal> userGoals = new List<UserGoal>{
 
-    IQueryable<userGoal> userGoals = new[]
-    {
-        new userGoal(1, "Increase daily physical activity", "Daily","10,000 steps","Access to standing desks and reminders","Ongoing"),
-        new userGoal(2, "Improve sleep quality", "Daily","7 hours of sleep","Sleep hygiene tips, reduce screen time","Ongoing"),
-        new userGoal(3, "Improve work and life balance", "Weekly","8AM-5PM work hours","Time management tools, productivity tips","Completed"),
-        new userGoal(4, "Healthy eating habits", "Daily","3 fruit servings","Meal planning resources, healthy recipe","Not Started")
-    }.AsQueryable();
+        new UserGoal(1, "Increase daily physical activity", "Daily","10,000 steps","Access to standing desks and reminders","Ongoing"),
+        new UserGoal(2, "Improve sleep quality", "Daily","7 hours of sleep","Sleep hygiene tips, reduce screen time","Ongoing"),
+        new UserGoal(3, "Improve work and life balance", "Weekly","8AM-5PM work hours","Time management tools, productivity tips","Completed"),
+        new UserGoal(4, "Healthy eating habits", "Daily","3 fruit servings","Meal planning resources, healthy recipe","Not Started")
+   };
 
-    void OnCheckboxChanged(userGoal curr) {
+    IQueryable<UserGoal> FilteredUserGoals => userGoals.AsQueryable();
+
+
+    void OnCheckboxChanged(UserGoal curr) {
         message = $"Checkbox for Goal Id {curr.Id} changed";
     }
 
     private async Task OpenDialogAsync()
     {
-        var text = string.Empty;
+        var newGoal = new UserGoal();
+
         var dialogInstance = await _dialogService.ShowDialogAsync(@<div>
-        <FluentTextField @bind-Value=text Label="Name:" />
-        <FluentTextField @bind-Value=text Label="Frequency:" />
-        <FluentTextField @bind-Value=text Label="Measurement:" />
-        <FluentTextField @bind-Value=text Label="Support:" />
-        <FluentCombobox @bind-Value=text TOption="string" Label="Status:">
-        <FluentOption Value="Ongoing">Ongoing</FluentOption>
+        <FluentTextField style="width: 100%;" @bind-Value=newGoal.Name Label="Name:" /><br>
+        <FluentTextField @bind-Value=newGoal.Frequency Label="Frequency:" /><br>
+        <FluentTextField @bind-Value=newGoal.Measurement Label="Measurement:" /><br>
+        <FluentTextArea style="width: 100%;" @bind-Value=newGoal.Support Label="Support:" /><br>
+        <FluentCombobox @bind-Value=newGoal.Status TOption="string" Label="Status:">
+            <FluentOption Value="Ongoing">Ongoing</FluentOption>
             <FluentOption Value="Completed">Completed</FluentOption>
-            <FluentOption Value="Not Started">Not Started</FluentOption>
+            <FluentOption Selected="true" Value="Not Started">Not Started</FluentOption>
         </FluentCombobox>
         </div>
     , new DialogParameters
@@ -86,7 +89,11 @@
         var result = await dialogInstance.Result;
         if (!result.Cancelled)
         {
-            await _dialogService.ShowSuccessAsync($"You entered: {text}", "Success");
+            newGoal.Id = userGoals.Count + 1; // Simple ID generation
+            userGoals.Add(newGoal);
+            StateHasChanged();
+
+            await _dialogService.ShowSuccessAsync($"You add a new goal!", "Success");
         }
     }
 }
